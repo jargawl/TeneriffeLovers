@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Teneryfa 2026 — plan rodzinnej wyprawy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0d2b3e;
+    --navy-2:#123a52;
+    --teal:#1f97a3;
+    --teal-light:#5fc2cc;
+    --sand:#f4ecd8;
+    --coral:#e0602c;
+    --mustard:#e3a72f;
+    --paper:#fffaf1;
+    --ink:#12242f;
+    --ink-soft:#4b6070;
+    --line:rgba(18,36,47,0.12);
+    --card-shadow:0 10px 30px rgba(13,43,62,0.10);
+    --radius-lg:22px;
+    --radius-sm:12px;
+
+    --bg:var(--paper);
+    --bg-elevated:#ffffff;
+    --text:var(--ink);
+    --text-soft:var(--ink-soft);
+    --border:var(--line);
+    --header-bg:var(--navy);
+    --header-text:var(--paper);
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0a1a24;
+      --bg-elevated:#102737;
+      --text:#f3ece0;
+      --text-soft:#a9bccb;
+      --border:rgba(243,236,224,0.12);
+      --card-shadow:0 10px 30px rgba(0,0,0,0.35);
+      --header-bg:#081824;
+      --header-text:#f3ece0;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0a1a24;
+    --bg-elevated:#102737;
+    --text:#f3ece0;
+    --text-soft:#a9bccb;
+    --border:rgba(243,236,224,0.12);
+    --card-shadow:0 10px 30px rgba(0,0,0,0.35);
+    --header-bg:#081824;
+    --header-text:#f3ece0;
+  }
+  html{scroll-padding-top:env(safe-area-inset-top,0px); height:100%;}
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    min-height:100%;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Karla',-apple-system,BlinkMacSystemFont,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk',sans-serif;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(ellipse at 15% 0%, rgba(224,96,44,0.35), transparent 55%),
+      radial-gradient(ellipse at 85% 100%, rgba(31,151,163,0.45), transparent 55%),
+      linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 60%, #0a2233 100%);
+    color:var(--paper);
+    padding:calc(36px + env(safe-area-inset-top,0px)) 20px 30px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-sun{
+    position:absolute; top:-60px; right:-40px; width:220px; height:220px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, var(--mustard), var(--coral) 70%);
+    opacity:0.85;
+    filter:blur(1px);
+  }
+  .hero-wave{
+    position:absolute; left:0; right:0; bottom:-2px; height:46px;
+    background:var(--bg);
+    -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 40' preserveAspectRatio='none'%3E%3Cpath d='M0 20 C 50 40 100 0 150 20 C 200 40 250 0 300 20 C 350 40 375 10 400 20 L400 40 L0 40 Z'/%3E%3C/svg%3E");
+    mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 40' preserveAspectRatio='none'%3E%3Cpath d='M0 20 C 50 40 100 0 150 20 C 200 40 250 0 300 20 C 350 40 375 10 400 20 L400 40 L0 40 Z'/%3E%3C/svg%3E");
+    -webkit-mask-size:100% 100%; mask-size:100% 100%;
+  }
+  .hero-content{position:relative; z-index:1; max-width:720px; margin:0 auto;}
+  .eyebrow-row{display:flex; align-items:center; gap:10px; margin-bottom:14px; color:var(--teal-light); font-weight:700; font-size:0.95rem;}
+  .hero h1{font-size:clamp(2rem, 7vw, 2.9rem); line-height:1.05; font-weight:700;}
+  .hero .dates{font-size:1.05rem; margin-top:10px; color:rgba(255,250,241,0.85);}
+
+
+  /* ---------- NAV ---------- */
+  .tabbar{
+    position:sticky; top:env(safe-area-inset-top,0px); z-index:20;
+    display:flex; gap:4px;
+    background:var(--bg);
+    border-bottom:1px solid var(--border);
+    padding:10px 16px 0;
+    overflow-x:auto;
+    max-width:760px; margin:0 auto;
+  }
+  .tab-btn{
+    appearance:none; border:none; background:transparent;
+    font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:0.95rem;
+    color:var(--text-soft);
+    padding:10px 14px 12px;
+    border-bottom:3px solid transparent;
+    cursor:pointer; white-space:nowrap;
+  }
+  .tab-btn.active{color:var(--coral); border-bottom-color:var(--coral);}
+  .tab-btn:focus-visible{outline:2px solid var(--teal); outline-offset:2px;}
+
+  main{max-width:760px; margin:0 auto; padding:20px 16px 60px;}
+  .view{display:none;}
+  .view.active{display:block;}
+
+  /* ---------- PROGRESS ---------- */
+  .progress-card{
+    background:var(--bg-elevated);
+    border-radius:var(--radius-lg);
+    padding:18px 20px;
+    box-shadow:var(--card-shadow);
+    margin-bottom:22px;
+    display:flex; align-items:center; gap:16px;
+  }
+  .progress-ring{flex:none; width:56px; height:56px;}
+  .progress-track{stroke:var(--border); fill:none; stroke-width:5;}
+  .progress-fill{stroke:var(--coral); fill:none; stroke-width:5; stroke-linecap:round; transform:rotate(-90deg); transform-origin:50% 50%; transition:stroke-dashoffset .4s ease;}
+  .progress-text strong{font-family:'Space Grotesk',sans-serif; font-size:1.05rem;}
+  .progress-text span{display:block; color:var(--text-soft); font-size:0.87rem; margin-top:2px;}
+
+  /* ---------- DAY CARDS ---------- */
+  .day-card{
+    background:var(--bg-elevated);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--card-shadow);
+    margin-bottom:16px;
+    overflow:hidden;
+    border:1px solid var(--border);
+  }
+  .day-head{
+    display:flex; align-items:center; gap:14px;
+    padding:16px 18px;
+    cursor:pointer;
+    background:none; border:none; width:100%; text-align:left;
+    font-family:inherit; color:inherit;
+  }
+  .day-num{
+    flex:none;
+    width:42px; height:42px; border-radius:12px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1rem;
+    background:var(--navy); color:var(--paper);
+  }
+  .day-num.type-travel{background:var(--ink-soft);}
+  .day-num.type-beach{background:var(--teal);}
+  .day-num.type-sight{background:var(--coral);}
+  .day-meta{flex:1; min-width:0;}
+  .day-date{font-size:0.82rem; color:var(--text-soft); font-weight:700; text-transform:uppercase; letter-spacing:0.03em;}
+  .day-title{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:1.05rem; margin-top:2px;}
+  .day-progress{font-size:0.8rem; color:var(--text-soft); flex:none;}
+  .chevron{flex:none; width:20px; height:20px; transition:transform .25s ease; color:var(--text-soft);}
+  .day-card.open .chevron{transform:rotate(180deg);}
+  .day-body{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+  .day-card.open .day-body{max-height:2000px;}
+  .day-body-inner{padding:0 18px 18px;}
+
+  .activity{
+    display:flex; gap:12px; padding:12px 0; border-top:1px solid var(--border);
+  }
+  .activity:first-child{border-top:none;}
+  .activity input[type=checkbox]{
+    flex:none; width:22px; height:22px; margin-top:2px;
+    accent-color:var(--coral);
+    cursor:pointer;
+  }
+  .activity-body label{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:0.98rem; cursor:pointer; display:block;}
+  .activity-body p{margin:5px 0 0; font-size:0.9rem; color:var(--text-soft); line-height:1.45;}
+  .activity.checked label{text-decoration:line-through; color:var(--text-soft);}
+  .activity.checked p{opacity:0.7;}
+  .maps-link{
+    display:inline-flex; align-items:center; gap:5px;
+    margin-top:8px; font-size:0.83rem; font-weight:700;
+    color:var(--teal); text-decoration:none;
+  }
+  .maps-link:hover{text-decoration:underline;}
+  .tag{
+    display:inline-block; font-size:0.72rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:0.03em; padding:2px 8px; border-radius:6px; margin-bottom:5px;
+  }
+  .tag.zwiedzanie{background:rgba(224,96,44,0.14); color:var(--coral);}
+  .tag.plaza{background:rgba(31,151,163,0.15); color:var(--teal);}
+  .tag.podroz{background:rgba(75,96,112,0.15); color:var(--ink-soft);}
+  .tag.opcja{background:rgba(227,167,47,0.18); color:#8a641b;}
+
+  /* ---------- PACKING LIST ---------- */
+  .pack-group{margin-bottom:22px;}
+  .pack-group h3{font-size:1rem; margin-bottom:10px; display:flex; align-items:center; gap:8px;}
+  .pack-group h3 .count{font-size:0.78rem; font-weight:500; color:var(--text-soft); font-family:'Karla',sans-serif;}
+  .pack-item{
+    display:flex; align-items:center; gap:12px;
+    background:var(--bg-elevated);
+    border:1px solid var(--border);
+    border-radius:var(--radius-sm);
+    padding:11px 14px;
+    margin-bottom:8px;
+  }
+  .pack-item input{width:20px; height:20px; accent-color:var(--teal); flex:none; cursor:pointer;}
+  .pack-item label{font-size:0.93rem; cursor:pointer; flex:1;}
+  .pack-item.checked label{text-decoration:line-through; color:var(--text-soft);}
+
+  /* ---------- INFO ---------- */
+  .info-card{
+    background:var(--bg-elevated);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    padding:18px 20px;
+    margin-bottom:16px;
+    box-shadow:var(--card-shadow);
+  }
+  .info-card h3{font-size:1rem; margin-bottom:10px; color:var(--coral);}
+  .info-row{display:flex; gap:10px; padding:7px 0; border-top:1px solid var(--border); font-size:0.92rem;}
+  .info-row:first-of-type{border-top:none;}
+  .info-row .k{flex:none; width:120px; color:var(--text-soft); font-weight:700;}
+  .info-row .v{flex:1;}
+  .reset-btn{
+    margin-top:6px;
+    background:transparent; border:1px solid var(--border); color:var(--text-soft);
+    padding:9px 16px; border-radius:999px; font-size:0.85rem; cursor:pointer;
+    font-family:'Karla',sans-serif;
+  }
+  .reset-btn:hover{border-color:var(--coral); color:var(--coral);}
+
+  footer{text-align:center; color:var(--text-soft); font-size:0.8rem; padding:10px 16px 30px;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-sun"></div>
+  <div class="hero-content">
+    <div class="eyebrow-row">🌴 Rodzinna wyprawa</div>
+    <h1>Teneryfa 2026</h1>
+    <div class="dates">20 października – 3 listopada · Gdynia → Ciechanów → Warszawa → Puerto de Santiago</div>
+  </div>
+  <div class="hero-wave"></div>
+</div>
+
+<nav class="tabbar">
+  <button class="tab-btn active" data-view="plan">Plan podróży</button>
+  <button class="tab-btn" data-view="packing">Co zabrać</button>
+  <button class="tab-btn" data-view="info">Informacje</button>
+</nav>
+
+<main>
+
+  <section id="view-plan" class="view active">
+    <div class="progress-card">
+      <svg class="progress-ring" viewBox="0 0 56 56">
+        <circle class="progress-track" cx="28" cy="28" r="24"></circle>
+        <circle id="progressFill" class="progress-fill" cx="28" cy="28" r="24" stroke-dasharray="150.8" stroke-dashoffset="150.8"></circle>
+      </svg>
+      <div class="progress-text">
+        <strong id="progressLabel">0 / 0 atrakcji</strong>
+        <span>odhaczonych w całej podróży</span>
+      </div>
+    </div>
+    <div id="daysContainer"></div>
+  </section>
+
+  <section id="view-packing" class="view">
+    <div id="packingContainer"></div>
+    <button class="reset-btn" id="resetPacking">Odznacz wszystko na liście</button>
+  </section>
+
+  <section id="view-info" class="view">
+    <div class="info-card">
+      <h3>Nocleg</h3>
+      <div class="info-row"><div class="k">Adres</div><div class="v">Calle Manuel Ravelo Seguro del Sol 2, apartament 424, 4 piętro<br>38683 Puerto de Santiago, Hiszpania<br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Calle%20Manuel%20Ravelo%20Seguro%20del%20Sol%202%2C%20Puerto%20de%20Santiago" target="_blank" rel="noopener">📍 Otwórz w Mapach Google</a></div></div>
+      <div class="info-row"><div class="k">Okolica</div><div class="v">Zachodnie wybrzeże Teneryfy, blisko Los Gigantes — dobra baza wypadowa na całą wyspę autem.</div></div>
+    </div>
+
+    <div class="info-card">
+      <h3>Transport tam</h3>
+      <div class="info-row"><div class="k">20.10, wt</div><div class="v">Pociąg Gdynia → Ciechanów</div></div>
+      <div class="info-row"><div class="k">21.10, śr</div><div class="v">Pociąg Ciechanów → Warszawa, odjazd 5:30</div></div>
+      <div class="info-row"><div class="k">21.10, śr</div><div class="v">Lot Warszawa Chopina → Teneryfa Południe, start 8:00, lądowanie ok. południa</div></div>
+    </div>
+
+    <div class="info-card">
+      <h3>Transport z powrotem</h3>
+      <div class="info-row"><div class="k">03.11, wt</div><div class="v">Lot Teneryfa Południe → Warszawa, odlot 16:30</div></div>
+      <div class="info-row"><div class="k">03.11, wt</div><div class="v">Dalej pociągiem: Warszawa → Ciechanów → Gdynia</div></div>
+    </div>
+
+    <div class="info-card">
+      <h3>Warto wiedzieć</h3>
+      <div class="info-row"><div class="k">Strefa czasu</div><div class="v">Wyspy Kanaryjskie są godzinę za Polską (ten sam czas co w Wielkiej Brytanii).</div></div>
+      <div class="info-row"><div class="k">Gniazdka</div><div class="v">Takie same jak w Polsce (typ C/F) — adapter niepotrzebny.</div></div>
+      <div class="info-row"><div class="k">Zmiana czasu</div><div class="v">W nocy z 24 na 25.10 przestawiamy zegarki na czas zimowy — dotyczy to też Kanarów.</div></div>
+      <div class="info-row"><div class="k">1 listopada</div><div class="v">Wszystkich Świętych — święto państwowe w Hiszpanii, część sklepów i restauracji może być zamknięta.</div></div>
+      <div class="info-row"><div class="k">Alarmowy</div><div class="v">112 (numer alarmowy obowiązujący w całej UE)</div></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>Dane zapisują się tylko w tej przeglądarce, na tym urządzeniu. Udanej podróży! ✈️</footer>
+
+<script>
+const DAYS = [
+  {id:'d1', date:'20.10, wt', title:'Podróż na start', type:'travel', activities:[
+    {id:'a', tag:'podroz', name:'Pociąg Gdynia → Ciechanów', desc:'Dzień w podróży pociągiem — dobry moment, żeby dopakować walizki i odespać przed wczesną pobudką następnego dnia.', loc:'Dworzec Gdynia Główna'}
+  ]},
+  {id:'d2', date:'21.10, śr', title:'Ciechanów → Warszawa → Teneryfa', type:'travel', activities:[
+    {id:'a', tag:'podroz', name:'Pociąg Ciechanów → Warszawa, 5:30', desc:'Bardzo wczesny start, ale daje spory zapas czasu przed odprawą na Chopina.', loc:'Dworzec Ciechanów'},
+    {id:'b', tag:'podroz', name:'Lot Warszawa → Teneryfa Południe, 8:00', desc:'Bezpośredni lot, ok. 5,5 godziny. Warto mieć pod ręką zabawki, słuchawki i przekąski dla chłopców.', loc:'Lotnisko Chopina Warszawa'},
+    {id:'c', tag:'podroz', name:'Odbiór wynajętego auta i dojazd do Puerto de Santiago', desc:'Z lotniska Południe do apartamentu to ok. 35–40 minut jazdy zachodnim wybrzeżem.', loc:'Tenerife South Airport'},
+    {id:'d', tag:'zwiedzanie', name:'Zakwaterowanie i pierwszy spacer po miasteczku', desc:'Rozpakowanie w apartamencie, spacer po promenadzie i kolacja z widokiem na ocean — bez napiętego planu na pierwszy wieczór.', loc:'Calle Manuel Ravelo Seguro del Sol 2, Puerto de Santiago'}
+  ]},
+  {id:'d3', date:'22.10, czw', title:'Los Gigantes i pierwsza kąpiel', type:'sight', activities:[
+    {id:'a', tag:'zwiedzanie', name:'Klify Los Gigantes', desc:'Spacer do punktu widokowego na sięgające 600 metrów klify oraz do portu jachtowego, kilka minut od waszego apartamentu.', loc:'Acantilados de Los Gigantes'},
+    {id:'b', tag:'plaza', name:'Playa de la Arena', desc:'Czarna, wulkaniczna plaża z basenami i spokojnym wejściem do wody — dobra na pierwszą kąpiel z dziećmi.', loc:'Playa de la Arena, Tenerife'}
+  ]},
+  {id:'d4', date:'23.10, pt', title:'Wyprawa do Maski', type:'sight', activities:[
+    {id:'a', tag:'zwiedzanie', name:'Wioska Masca', desc:'Jedna z najbardziej znanych atrakcji wyspy — górska wioska nad wąwozem, ale dojazd krętą drogą bywa męczący, warto planować przerwy dla dzieci.', loc:'Masca, Tenerife'},
+    {id:'b', tag:'zwiedzanie', name:'Punkty widokowe po drodze', desc:'Kilka krótkich postojów na miradorach z widokiem na wąwóz — świetne zdjęcia bez długiego marszu.', loc:'Mirador de Masca'},
+    {id:'c', tag:'opcja', name:'Opcjonalnie: szlak przez wąwóz Masca', desc:'Wymaga wcześniejszej rezerwacji wejścia i dobrej kondycji — raczej dla starszych dzieci, do rozważenia na miejscu.', loc:'Barranco de Masca'}
+  ]},
+  {id:'d5', date:'24.10, sob', title:'Park Narodowy Teide', type:'sight', activities:[
+    {id:'a', tag:'zwiedzanie', name:'Roques de García', desc:'Łatwy, malowniczy spacer (ok. 3,5 km) wśród charakterystycznych skał wulkanicznych — spokojnie do przejścia z dziećmi.', loc:'Roques de García, Tenerife'},
+    {id:'b', tag:'zwiedzanie', name:'Mirador de la Ruleta i Llano de Ucanca', desc:'Widoki jak z Księżyca — rozległa równina wulkaniczna, dobre miejsce na rodzinne zdjęcie.', loc:'Mirador de la Ruleta, Teide'},
+    {id:'c', tag:'opcja', name:'Opcjonalnie: kolejka linowa Teleférico del Teide', desc:'Bilety najlepiej rezerwować wcześniej; przy silnym wietrze bywa zamknięta, warto sprawdzić dzień wcześniej.', loc:'Teleférico del Teide'}
+  ]},
+  {id:'d6', date:'25.10, ndz', title:'Dzień na plaży', type:'beach', activities:[
+    {id:'a', tag:'plaza', name:'Playa de la Arena lub Playa Jardín', desc:'Cały dzień bez planu — zamki z piasku, kąpiel, lody na promenadzie.', loc:'Playa Jardín, Puerto de la Cruz'},
+    {id:'b', tag:'podroz', name:'Zmiana czasu w nocy', desc:'W nocy z soboty na niedzielę cofamy zegarki o godzinę — dotyczy to też Wysp Kanaryjskich.'}
+  ]},
+  {id:'d7', date:'26.10, pon', title:'Garachico i smocze drzewo', type:'sight', activities:[
+    {id:'a', tag:'zwiedzanie', name:'Naturalne baseny El Caletón w Garachico', desc:'Baseny wykute w dawnym lawowym wypływie, otoczone urokliwym starym miastem — świetne na chwilę odpoczynku.', loc:'El Caletón, Garachico'},
+    {id:'b', tag:'zwiedzanie', name:'Drago Milenario w Icod de los Vinos', desc:'Liczące ok. tysiąc lat drzewo smocze, symbol wyspy, z otaczającym je ogrodem botanicznym.', loc:'Drago Milenario, Icod de los Vinos'}
+  ]},
+  {id:'d8', date:'27.10, wt', title:'Loro Parque', type:'sight', activities:[
+    {id:'a', tag:'zwiedzanie', name:'Loro Parque w Puerto de la Cruz', desc:'Park ze zwierzętami — pingwiny, orki, delfiny i pokazy — spokojnie zajmie cały dzień i to jedna z ulubionych atrakcji dzieci na wyspie.', loc:'Loro Parque'}
+  ]},
+  {id:'d9', date:'28.10, śr', title:'Siam Park', type:'sight', activities:[
+    {id:'a', tag:'zwiedzanie', name:'Siam Park w Costa Adeje', desc:'Jeden z najlepiej ocenianych parków wodnych na świecie, ze strefami zjeżdżalni także dla najmłodszych. Warto przyjechać na otwarcie, żeby uniknąć kolejek.', loc:'Siam Park Tenerife'}
+  ]},
+  {id:'d10', date:'29.10, czw', title:'Plaża w Costa Adeje', type:'beach', activities:[
+    {id:'a', tag:'plaza', name:'Playa del Duque lub Playa de Fañabé', desc:'Białe piaski i spokojna woda, mnóstwo kawiarni i lodziarni tuż przy plaży.', loc:'Playa del Duque, Costa Adeje'},
+    {id:'b', tag:'zwiedzanie', name:'Spacer promenadą Costa Adeje', desc:'Sklepy, lody i zachód słońca nad oceanem po plażowym dniu.', loc:'Costa Adeje, Tenerife'}
+  ]},
+  {id:'d11', date:'30.10, pt', title:'Santa Cruz de Tenerife', type:'sight', activities:[
+    {id:'a', tag:'zwiedzanie', name:'Auditorio de Tenerife', desc:'Charakterystyczna, rzeźbiarska architektura — symbol stolicy wyspy, świetne tło na zdjęcie.', loc:'Auditorio de Tenerife'},
+    {id:'b', tag:'plaza', name:'Plaża Las Teresitas', desc:'Złoty piasek przywieziony z Sahary i spokojna zatoka, bardzo popularna wśród lokalsów.', loc:'Playa de las Teresitas'},
+    {id:'c', tag:'zwiedzanie', name:'Spacer po centrum Santa Cruz', desc:'Plaza de España, lody i miejski klimat stolicy Teneryfy.', loc:'Plaza de España, Santa Cruz de Tenerife'}
+  ]},
+  {id:'d12', date:'31.10, sob', title:'La Laguna i las mgławicowy Anaga', type:'sight', activities:[
+    {id:'a', tag:'zwiedzanie', name:'San Cristóbal de La Laguna', desc:'Kolorowe, kolonialne uliczki wpisane na listę UNESCO — przyjemny spacer na godzinę-dwie.', loc:'San Cristóbal de La Laguna'},
+    {id:'b', tag:'zwiedzanie', name:'Park Wiejski Anaga', desc:'Krótki spacer po tajemniczym lesie laurowym i punkty widokowe, np. Mirador Cruz del Carmen. Drogi tam są kręte, więc lepiej dla starszych dzieci.', loc:'Mirador Cruz del Carmen, Anaga'}
+  ]},
+  {id:'d13', date:'01.11, ndz', title:'Rejs z wielorybami', type:'sight', activities:[
+    {id:'a', tag:'zwiedzanie', name:'Rejs katamaranem z Puerto Colón lub Los Gigantes', desc:'Obserwacja wielorybów pilotowych i delfinów w ich naturalnym środowisku, na wielu rejsach jest też czas na kąpiel w oceanie.', loc:'Puerto Colón, Tenerife'},
+    {id:'b', tag:'podroz', name:'Święto Wszystkich Świętych w Hiszpanii', desc:'Część sklepów i restauracji może być dziś zamknięta — warto zaplanować posiłki z wyprzedzeniem.'}
+  ]},
+  {id:'d14', date:'02.11, pon', title:'Ostatni dzień relaksu', type:'beach', activities:[
+    {id:'a', tag:'plaza', name:'Plaża w Puerto de Santiago', desc:'Ostatnie kąpiele bez pośpiechu, tuż obok apartamentu.', loc:'Playa Puerto de Santiago, Tenerife'},
+    {id:'b', tag:'zwiedzanie', name:'Ostatnie zakupy i pakowanie', desc:'Lokalne pamiątki — sos mojo, miód palmowy, kanaryjskie wino — i spokojne pakowanie walizek przed jutrzejszym lotem.', loc:'Puerto de Santiago, Tenerife'}
+  ]},
+  {id:'d15', date:'03.11, wt', title:'Powrót do domu', type:'travel', activities:[
+    {id:'a', tag:'podroz', name:'Zwrot wynajętego auta na lotnisku Teneryfa Południe', desc:'Warto zaplanować dojazd z zapasem, licząc się z korkami w sezonie.', loc:'Tenerife South Airport'},
+    {id:'b', tag:'podroz', name:'Lot Teneryfa → Warszawa, odlot 16:30', desc:'Przylot do Warszawy wieczorem, dalej podróż pociągiem do Ciechanowa i Gdyni.', loc:'Tenerife South Airport'}
+  ]}
+];
+
+const PACKING = [
+  {group:'Dokumenty i finanse', items:[
+    'Paszporty / dowody osobiste',
+    'Bilety lotnicze i kolejowe (telefon + wydruk)',
+    'Potwierdzenie rezerwacji apartamentu',
+    'Prawo jazdy i dokumenty do wynajętego auta',
+    'Karta EKUZ',
+    'Ubezpieczenie podróżne',
+    'Gotówka w euro i karta płatnicza'
+  ]},
+  {group:'Dla dzieci', items:[
+    'Ulubione maskotki / zabawki na podróż',
+    'Tablet, słuchawki, ładowarki',
+    'Kredki i kolorowanki na pociąg i samolot',
+    'Przekąski na drogę',
+    'Chusteczki nawilżane',
+    'Syrop na chorobę lokomocyjną',
+    'Kapelusze z szerokim rondem'
+  ]},
+  {group:'Plażowe', items:[
+    'Stroje kąpielowe (kilka kompletów)',
+    'Ręczniki plażowe',
+    'Kremy z wysokim filtrem dla dzieci i dorosłych',
+    'Zabawki do piasku',
+    'Rękawki lub pas do pływania',
+    'Klapki'
+  ]},
+  {group:'Ubrania', items:[
+    'Lekkie ubrania na ciepłe dni',
+    'Cieplejsza bluza lub kurtka na wieczory oraz na Teide i Maskę',
+    'Wygodne buty do spacerów i wycieczek',
+    'Cieplejszy komplet na podróż pociągiem w Polsce'
+  ]},
+  {group:'Elektronika', items:[
+    'Ładowarki do telefonów',
+    'Powerbank',
+    'Aparat lub telefon do zdjęć',
+  ]},
+  {group:'Apteczka', items:[
+    'Leki przeciwbólowe i na gorączkę dla dzieci',
+    'Plastry i podstawowy opatrunek',
+    'Płyn nawadniający',
+    'Repelent na owady',
+  ]},
+  {group:'Inne', items:[
+    'Wygodny bagaż podręczny na pociąg i samolot',
+    'Worki na mokre lub brudne ubrania',
+    'Mała poduszka podróżna dla dzieci',
+    'Bidon na wodę'
+  ]}
+];
+
+const LS_ACT = 'tenerife2026_activities';
+const LS_PACK = 'tenerife2026_packing';
+
+function loadState(key){
+  try{
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : {};
+  }catch(e){ return {}; }
+}
+function saveState(key, obj){
+  try{ localStorage.setItem(key, JSON.stringify(obj)); }catch(e){}
+}
+
+let actState = loadState(LS_ACT);
+let packState = loadState(LS_PACK);
+
+function typeClass(t){
+  if(t === 'travel') return 'type-travel';
+  if(t === 'beach') return 'type-beach';
+  return 'type-sight';
+}
+function tagLabel(t){
+  if(t === 'zwiedzanie') return 'Zwiedzanie';
+  if(t === 'plaza') return 'Plaża';
+  if(t === 'podroz') return 'Podróż';
+  if(t === 'opcja') return 'Opcjonalnie';
+  return t;
+}
+
+function renderDays(){
+  const container = document.getElementById('daysContainer');
+  container.innerHTML = '';
+  DAYS.forEach((day, idx) => {
+    const card = document.createElement('div');
+    card.className = 'day-card';
+    card.dataset.day = day.id;
+
+    const doneCount = day.activities.filter(a => actState[day.id + '-' + a.id]).length;
+
+    card.innerHTML = `
+      <button class="day-head" aria-expanded="false">
+        <div class="day-num ${typeClass(day.type)}">${idx+1}</div>
+        <div class="day-meta">
+          <div class="day-date">${day.date}</div>
+          <div class="day-title">${day.title}</div>
+        </div>
+        <div class="day-progress">${doneCount}/${day.activities.length}</div>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="day-body"><div class="day-body-inner"></div></div>
+    `;
+
+    const bodyInner = card.querySelector('.day-body-inner');
+    day.activities.forEach(a => {
+      const key = day.id + '-' + a.id;
+      const checked = !!actState[key];
+      const row = document.createElement('div');
+      row.className = 'activity' + (checked ? ' checked' : '');
+      const mapsUrl = a.loc ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(a.loc)}` : null;
+      row.innerHTML = `
+        <input type="checkbox" id="chk-${key}" ${checked ? 'checked' : ''}>
+        <div class="activity-body">
+          <span class="tag ${a.tag}">${tagLabel(a.tag)}</span>
+          <label for="chk-${key}">${a.name}</label>
+          <p>${a.desc}</p>
+          ${mapsUrl ? `<a class="maps-link" href="${mapsUrl}" target="_blank" rel="noopener">📍 Otwórz w Mapach Google</a>` : ''}
+        </div>
+      `;
+      const checkbox = row.querySelector('input');
+      checkbox.addEventListener('change', () => {
+        actState[key] = checkbox.checked;
+        saveState(LS_ACT, actState);
+        row.classList.toggle('checked', checkbox.checked);
+        updateDayProgress(day, card);
+        updateOverallProgress();
+      });
+      bodyInner.appendChild(row);
+    });
+
+    card.querySelector('.day-head').addEventListener('click', (e) => {
+      const isOpen = card.classList.contains('open');
+      card.classList.toggle('open', !isOpen);
+      card.querySelector('.day-head').setAttribute('aria-expanded', String(!isOpen));
+    });
+
+    container.appendChild(card);
+  });
+
+  // open the first day with unfinished activities by default
+  const firstUnfinished = DAYS.find(d => d.activities.some(a => !actState[d.id + '-' + a.id]));
+  if(firstUnfinished){
+    const el = container.querySelector(`[data-day="${firstUnfinished.id}"]`);
+    if(el){ el.classList.add('open'); el.querySelector('.day-head').setAttribute('aria-expanded','true'); }
+  }
+}
+
+function updateDayProgress(day, card){
+  const doneCount = day.activities.filter(a => actState[day.id + '-' + a.id]).length;
+  card.querySelector('.day-progress').textContent = `${doneCount}/${day.activities.length}`;
+}
+
+function updateOverallProgress(){
+  const total = DAYS.reduce((sum, d) => sum + d.activities.length, 0);
+  const done = DAYS.reduce((sum, d) => sum + d.activities.filter(a => actState[d.id + '-' + a.id]).length, 0);
+  document.getElementById('progressLabel').textContent = `${done} / ${total} atrakcji`;
+  const circumference = 150.8;
+  const ratio = total ? done/total : 0;
+  const fill = document.getElementById('progressFill');
+  fill.style.strokeDasharray = circumference;
+  fill.style.strokeDashoffset = String(circumference * (1 - ratio));
+}
+
+function renderPacking(){
+  const container = document.getElementById('packingContainer');
+  container.innerHTML = '';
+  PACKING.forEach((group, gi) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'pack-group';
+    const doneCount = group.items.filter((_, ii) => packState[gi+'-'+ii]).length;
+    wrap.innerHTML = `<h3>${group.group} <span class="count">${doneCount}/${group.items.length}</span></h3>`;
+    group.items.forEach((item, ii) => {
+      const key = gi + '-' + ii;
+      const checked = !!packState[key];
+      const row = document.createElement('div');
+      row.className = 'pack-item' + (checked ? ' checked' : '');
+      row.innerHTML = `
+        <input type="checkbox" id="pack-${key}" ${checked ? 'checked' : ''}>
+        <label for="pack-${key}">${item}</label>
+      `;
+      const checkbox = row.querySelector('input');
+      checkbox.addEventListener('change', () => {
+        packState[key] = checkbox.checked;
+        saveState(LS_PACK, packState);
+        row.classList.toggle('checked', checkbox.checked);
+        wrap.querySelector('.count').textContent = `${group.items.filter((_, i2) => packState[gi+'-'+i2]).length}/${group.items.length}`;
+      });
+      wrap.appendChild(row);
+    });
+    container.appendChild(wrap);
+  });
+}
+
+document.getElementById('resetPacking').addEventListener('click', () => {
+  packState = {};
+  saveState(LS_PACK, packState);
+  renderPacking();
+});
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('view-' + btn.dataset.view).classList.add('active');
+  });
+});
+
+renderDays();
+renderPacking();
+updateOverallProgress();
+</script>
+</body>
+</html>
